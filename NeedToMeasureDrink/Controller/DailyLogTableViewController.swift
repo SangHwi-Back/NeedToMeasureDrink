@@ -13,7 +13,8 @@ import ChameleonFramework
 
 class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDelegate {
     
-    var realm = try! Realm()
+//    var realm = try! Realm()
+    var dbKit = RealmKit()
     var dailyLogs: Results<DailyLog>?
     var category: Results<Category>?
     var typeParameter: String?
@@ -35,24 +36,26 @@ class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDele
     
     @IBAction func deleteLogButtonClicked(_ sender: UIButton) {
         if let safeDailyLogs = dailyLogs{
-            try! realm.write{
-                realm.delete(safeDailyLogs)
-            }
+            dbKit.realmDelete(safeDailyLogs)
+//            try! realm.write{
+//                realm.delete(safeDailyLogs)
+//            }
         }
         dismiss(animated: true, completion: nil)
     }
     @IBAction func deleteCategoryButtonClicked(_ sender: UIBarButtonItem) {
         if let safeCategory = parameterCategory {
-            try! realm.write{
-                realm.delete(safeCategory)
-            }
+            dbKit.realmDelete(safeCategory)
+//            try! realm.write{
+//                realm.delete(safeCategory)
+//            }
         }
         dismiss(animated: true, completion: nil)
     }
     
     func settingData() {
         if let safeCategory = parameterCategory {
-            dailyLogs = realm.objects(DailyLog.self).filter("ANY category.categoryKey = %@", safeCategory.categoryKey)
+            dailyLogs = dbKit.dailyLogs.filter("ANY category.categoryKey = %@", safeCategory.categoryKey)
             dailyLogSection = [[DailyLog]]()
             
             guard dailyLogs!.count > 0 && dailyLogs != nil else {return}
@@ -81,16 +84,13 @@ class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDele
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        dateFormmater.dateFormat = "yyyy-MM-dd"
-        if dailyLogSection.count > 0 {
-            if let safeDate = dailyLogSection[section].first?.date{
-                return dateFormmater.string(from: safeDate)
-            }else{
-                return "no Section"
-            }
-        }else{
-            return "no Sections"
+        guard let safeDate = dailyLogSection[section].first?.date,
+            dailyLogSection.count > 0 else {
+            return "no Section"
         }
+        
+        dateFormmater.dateFormat = "yyyy-MM-dd"
+        return dateFormmater.string(from: safeDate)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,17 +115,20 @@ class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDele
     //MARK: - SwipeTableViewCellDelegate Method
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
+        
         tableView.cellForRow(at: indexPath)?.isSelected = false
+        
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (action, indexPath) in
             if let dailyLog = self.dailyLogs?[indexPath.row] {
-                do{
-                    try self.realm.write {
-                        self.realm.delete(dailyLog)
-                    }
-                    self.settingData()
-                }catch{
-                    print("Error DailyLogTableViewController Delete Action \(error)")
-                }
+                self.dbKit.realmDelete(dailyLog)
+//                do{
+//                    try self.realm.write {
+//                        self.realm.delete(dailyLog)
+//                    }
+//                    self.settingData()
+//                }catch{
+//                    print("Error DailyLogTableViewController Delete Action \(error)")
+//                }
             }
         }
         return [deleteAction]
@@ -143,7 +146,7 @@ class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDele
 extension DailyLogTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let safeCategory = parameterCategory {
-            dailyLogs = realm.objects(DailyLog.self).filter("ANY category.categoryKey %@", safeCategory.categoryKey)
+            dailyLogs = dbKit.dailyLogs.filter("ANY category.categoryKey %@", safeCategory.categoryKey)
         }
         tableView.reloadData()
     }

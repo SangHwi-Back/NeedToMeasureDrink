@@ -1,0 +1,6 @@
+module Pods_NeedToMeasureDrinkTests {
+  umbrella header "Pods-NeedToMeasureDrinkTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

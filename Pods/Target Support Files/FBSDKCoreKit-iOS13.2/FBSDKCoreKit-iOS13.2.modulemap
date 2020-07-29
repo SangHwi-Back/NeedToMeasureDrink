@@ -1,0 +1,7 @@
+module FBSDKCoreKit {
+  umbrella header "FBSDKCoreKit-iOS13.2-umbrella.h"
+  exclude header "FBSDKCoreKit-iOS13.5-umbrella.h"
+
+  export *
+  module * { export * }
+}

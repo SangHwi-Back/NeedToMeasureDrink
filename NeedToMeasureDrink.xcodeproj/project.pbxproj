@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1B0BC44524257E550034D01A /* DailyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BC44424257E550034D01A /* DailyLog.swift */; };
+		1B551A4B24C65C8400BC9D64 /* RealmKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B551A4A24C65C8400BC9D64 /* RealmKit.swift */; };
 		1B61867D241F9F8A00600255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B61867C241F9F8A00600255 /* AppDelegate.swift */; };
 		1B61867F241F9F8A00600255 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B61867E241F9F8A00600255 /* SceneDelegate.swift */; };
 		1B618681241F9F8A00600255 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B618680241F9F8A00600255 /* ViewController.swift */; };
@@ -23,8 +24,20 @@
 		1B6492AE24295DEC00DEFBFE /* ItemAndLogSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6492AD24295DEC00DEFBFE /* ItemAndLogSearchBar.swift */; };
 		1B7F536F2454141A00BD1FF0 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7F536E2454141A00BD1FF0 /* LoginServices.swift */; };
 		1B7F5371245418F300BD1FF0 /* KeyChainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7F5370245418F300BD1FF0 /* KeyChainItem.swift */; };
+		1BD00440249B1B8000A271CA /* NeedToMeasureDrinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD0043F249B1B8000A271CA /* NeedToMeasureDrinkTests.swift */; };
+		1F7FD05F6657FEE2CA89A51E /* libPods-NeedToMeasureDrinkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26624FEE375476A4A6152153 /* libPods-NeedToMeasureDrinkTests.a */; };
 		2A586DD1AEE89E0545FE0005 /* libPods-NeedToMeasureDrink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 192C0847493D4216185A9A70 /* libPods-NeedToMeasureDrink.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1BD00442249B1B8000A271CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B618671241F9F8A00600255 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B618678241F9F8A00600255;
+			remoteInfo = NeedToMeasureDrink;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		192C0847493D4216185A9A70 /* libPods-NeedToMeasureDrink.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeedToMeasureDrink.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +46,7 @@
 		1B4CC90F24259726009CD06E /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4CC91224259736009CD06E /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4CC9152425975B009CD06E /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B551A4A24C65C8400BC9D64 /* RealmKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmKit.swift; sourceTree = "<group>"; };
 		1B618679241F9F8A00600255 /* NeedToMeasureDrink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeedToMeasureDrink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B61867C241F9F8A00600255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B61867E241F9F8A00600255 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,8 +64,14 @@
 		1B6492AD24295DEC00DEFBFE /* ItemAndLogSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAndLogSearchBar.swift; sourceTree = "<group>"; };
 		1B7F536E2454141A00BD1FF0 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
 		1B7F5370245418F300BD1FF0 /* KeyChainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainItem.swift; sourceTree = "<group>"; };
+		1BD0043D249B1B8000A271CA /* NeedToMeasureDrinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeedToMeasureDrinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BD0043F249B1B8000A271CA /* NeedToMeasureDrinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedToMeasureDrinkTests.swift; sourceTree = "<group>"; };
+		1BD00441249B1B8000A271CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26624FEE375476A4A6152153 /* libPods-NeedToMeasureDrinkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeedToMeasureDrinkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44551AECDC65B71827DB4FA0 /* Pods_NeedToMeasureDrink.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeedToMeasureDrink.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9360350743363C7836CD23A5 /* Pods-NeedToMeasureDrink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeedToMeasureDrink.debug.xcconfig"; path = "Target Support Files/Pods-NeedToMeasureDrink/Pods-NeedToMeasureDrink.debug.xcconfig"; sourceTree = "<group>"; };
+		A81CF5783C319204EB6624BA /* Pods-NeedToMeasureDrinkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeedToMeasureDrinkTests.debug.xcconfig"; path = "Target Support Files/Pods-NeedToMeasureDrinkTests/Pods-NeedToMeasureDrinkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E6CF18FECA02583BF1546731 /* Pods-NeedToMeasureDrinkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeedToMeasureDrinkTests.release.xcconfig"; path = "Target Support Files/Pods-NeedToMeasureDrinkTests/Pods-NeedToMeasureDrinkTests.release.xcconfig"; sourceTree = "<group>"; };
 		EBFA1442B4626CABAD09EF5F /* Pods-NeedToMeasureDrink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeedToMeasureDrink.release.xcconfig"; path = "Target Support Files/Pods-NeedToMeasureDrink/Pods-NeedToMeasureDrink.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +84,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1BD0043A249B1B8000A271CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F7FD05F6657FEE2CA89A51E /* libPods-NeedToMeasureDrinkTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -72,6 +100,8 @@
 			children = (
 				9360350743363C7836CD23A5 /* Pods-NeedToMeasureDrink.debug.xcconfig */,
 				EBFA1442B4626CABAD09EF5F /* Pods-NeedToMeasureDrink.release.xcconfig */,
+				A81CF5783C319204EB6624BA /* Pods-NeedToMeasureDrinkTests.debug.xcconfig */,
+				E6CF18FECA02583BF1546731 /* Pods-NeedToMeasureDrinkTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -80,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				1B61867B241F9F8A00600255 /* NeedToMeasureDrink */,
+				1BD0043E249B1B8000A271CA /* NeedToMeasureDrinkTests */,
 				1B61867A241F9F8A00600255 /* Products */,
 				009DF9CD992CF7EFC25060C1 /* Pods */,
 				D5C8710CEDA74A700A033B8B /* Frameworks */,
@@ -91,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				1B618679241F9F8A00600255 /* NeedToMeasureDrink.app */,
+				1BD0043D249B1B8000A271CA /* NeedToMeasureDrinkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,7 +130,6 @@
 		1B61867B241F9F8A00600255 /* NeedToMeasureDrink */ = {
 			isa = PBXGroup;
 			children = (
-				1B61867C241F9F8A00600255 /* AppDelegate.swift */,
 				1B618693241F9FA300600255 /* Supporting Files */,
 				1B6186942420E04000600255 /* Controller */,
 				1B6492AA2427EDD100DEFBFE /* Model */,
@@ -112,6 +143,7 @@
 		1B618693241F9FA300600255 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1B61867C241F9F8A00600255 /* AppDelegate.swift */,
 				1B61867E241F9F8A00600255 /* SceneDelegate.swift */,
 				1B618688241F9F8D00600255 /* Assets.xcassets */,
 				1B61868A241F9F8D00600255 /* LaunchScreen.storyboard */,
@@ -147,8 +179,18 @@
 				1B0BC44424257E550034D01A /* DailyLog.swift */,
 				1B7F5370245418F300BD1FF0 /* KeyChainItem.swift */,
 				1B6492A82427EDC700DEFBFE /* Category.swift */,
+				1B551A4A24C65C8400BC9D64 /* RealmKit.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1BD0043E249B1B8000A271CA /* NeedToMeasureDrinkTests */ = {
+			isa = PBXGroup;
+			children = (
+				1BD0043F249B1B8000A271CA /* NeedToMeasureDrinkTests.swift */,
+				1BD00441249B1B8000A271CA /* Info.plist */,
+			);
+			path = NeedToMeasureDrinkTests;
 			sourceTree = "<group>";
 		};
 		D5C8710CEDA74A700A033B8B /* Frameworks */ = {
@@ -159,6 +201,7 @@
 				1B4CC90F24259726009CD06E /* RealmSwift.framework */,
 				1B4CC90824259571009CD06E /* Realm.framework */,
 				192C0847493D4216185A9A70 /* libPods-NeedToMeasureDrink.a */,
+				26624FEE375476A4A6152153 /* libPods-NeedToMeasureDrinkTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,6 +217,7 @@
 				1B618675241F9F8A00600255 /* Sources */,
 				1B618676241F9F8A00600255 /* Frameworks */,
 				1B618677241F9F8A00600255 /* Resources */,
+				CE16A83EE4FE0D5C618CBC69 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,18 +228,42 @@
 			productReference = 1B618679241F9F8A00600255 /* NeedToMeasureDrink.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1BD0043C249B1B8000A271CA /* NeedToMeasureDrinkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BD00446249B1B8000A271CA /* Build configuration list for PBXNativeTarget "NeedToMeasureDrinkTests" */;
+			buildPhases = (
+				4231AFBB27C930C2C3BFB22D /* [CP] Check Pods Manifest.lock */,
+				1BD00439249B1B8000A271CA /* Sources */,
+				1BD0043A249B1B8000A271CA /* Frameworks */,
+				1BD0043B249B1B8000A271CA /* Resources */,
+				FB75195CA2843BD402415D35 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1BD00443249B1B8000A271CA /* PBXTargetDependency */,
+			);
+			name = NeedToMeasureDrinkTests;
+			productName = NeedToMeasureDrinkTests;
+			productReference = 1BD0043D249B1B8000A271CA /* NeedToMeasureDrinkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1B618671241F9F8A00600255 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Sanghwi Back";
 				TargetAttributes = {
 					1B618678241F9F8A00600255 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					1BD0043C249B1B8000A271CA = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 1B618678241F9F8A00600255;
 					};
 				};
 			};
@@ -213,6 +281,7 @@
 			projectRoot = "";
 			targets = (
 				1B618678241F9F8A00600255 /* NeedToMeasureDrink */,
+				1BD0043C249B1B8000A271CA /* NeedToMeasureDrinkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -229,9 +298,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1BD0043B249B1B8000A271CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4231AFBB27C930C2C3BFB22D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeedToMeasureDrinkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6F1FD7E72A9A41DF6219B2DD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,6 +352,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CE16A83EE4FE0D5C618CBC69 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeedToMeasureDrink/Pods-NeedToMeasureDrink-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeedToMeasureDrink/Pods-NeedToMeasureDrink-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NeedToMeasureDrink/Pods-NeedToMeasureDrink-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB75195CA2843BD402415D35 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeedToMeasureDrinkTests/Pods-NeedToMeasureDrinkTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeedToMeasureDrinkTests/Pods-NeedToMeasureDrinkTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NeedToMeasureDrinkTests/Pods-NeedToMeasureDrinkTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -263,6 +395,7 @@
 			files = (
 				1B7F5371245418F300BD1FF0 /* KeyChainItem.swift in Sources */,
 				1B6492A7242778B300DEFBFE /* DailyLogTableViewController.swift in Sources */,
+				1B551A4B24C65C8400BC9D64 /* RealmKit.swift in Sources */,
 				1B618687241F9F8A00600255 /* NeedToMeasureDrink.xcdatamodeld in Sources */,
 				1B618681241F9F8A00600255 /* ViewController.swift in Sources */,
 				1B0BC44524257E550034D01A /* DailyLog.swift in Sources */,
@@ -276,7 +409,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1BD00439249B1B8000A271CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BD00440249B1B8000A271CA /* NeedToMeasureDrinkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1BD00443249B1B8000A271CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B618678241F9F8A00600255 /* NeedToMeasureDrink */;
+			targetProxy = 1BD00442249B1B8000A271CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1B618682241F9F8A00600255 /* Main.storyboard */ = {
@@ -450,6 +599,50 @@
 			};
 			name = Release;
 		};
+		1BD00444249B1B8000A271CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A81CF5783C319204EB6624BA /* Pods-NeedToMeasureDrinkTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L3ZPWB4HNK;
+				INFOPLIST_FILE = NeedToMeasureDrinkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanghwi.NeedToMeasureDrinkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NeedToMeasureDrink.app/NeedToMeasureDrink";
+			};
+			name = Debug;
+		};
+		1BD00445249B1B8000A271CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6CF18FECA02583BF1546731 /* Pods-NeedToMeasureDrinkTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L3ZPWB4HNK;
+				INFOPLIST_FILE = NeedToMeasureDrinkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanghwi.NeedToMeasureDrinkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NeedToMeasureDrink.app/NeedToMeasureDrink";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -467,6 +660,15 @@
 			buildConfigurations = (
 				1B618691241F9F8D00600255 /* Debug */,
 				1B618692241F9F8D00600255 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1BD00446249B1B8000A271CA /* Build configuration list for PBXNativeTarget "NeedToMeasureDrinkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BD00444249B1B8000A271CA /* Debug */,
+				1BD00445249B1B8000A271CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -9,9 +9,12 @@
 import UIKit
 import RealmSwift
 import SwipeCellKit
+import RxSwift
+import RxCocoa
 
 class MainViewController: UITableViewController {
-    var realm = try! Realm()
+//    var realm = try! Realm()
+    var dbKit = RealmKit()
     var dailyLog: Results<DailyLog>?
     var categories: Results<Category>?
     var textFieldPickerValue: String?
@@ -25,37 +28,36 @@ class MainViewController: UITableViewController {
     let alertCategoryActionSheet = UIAlertController(title: "actionSheetTitle", message: "actionSheetMessage", preferredStyle: .actionSheet)
     let currentDate = Date.init()
     var parameterCell: MainViewCell?
+    
+    let calendar = Calendar.current
+    let bag = DisposeBag()
+    
     @IBOutlet var categorySearchBar: UISearchBar!
+    @IBOutlet var drinkTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.flatSkyBlueDark()
-        loadCategories()
+        categories = dbKit.categories
         self.hidekeyboard()
         let nibName = UINib(nibName: "MainViewCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "drinkItem")
         
         let alertAddAction = UIAlertAction(title: "Add", style: .default) { (_) in
             let category = Category()
-            category.categoryKey = UUID().uuidString
-            if let safeTextField = self.textFieldPickerValue {
-                category.type = safeTextField
-            }
-            if let safeLastText = self.alertAddController.textFields?.last?.text {
-                category.name = safeLastText
+            
+            guard let safeTextField = self.textFieldPickerValue, let safeLastText = self.alertAddController.textFields?.last?.text else {
+                return
             }
             
+            category.categoryKey = UUID().uuidString
+            category.type = safeTextField
+            category.name = safeLastText
             category.numberOfCheckBox = 0
             
-            do {
-                try self.realm.write {
-                    self.realm.add(category)
-                }
-                self.loadCategories()
-                self.tableView.reloadData()
-            } catch {
-                print("error in Realm Init ::: \(error)")
-            }
+            self.dbKit.realmInsert(category)
+            self.loadCategories()
+            self.loadCell(self.dbKit.categories)
         }
         
         let alertCancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
@@ -75,12 +77,17 @@ class MainViewController: UITableViewController {
             textField.inputAccessoryView = toolBar
             textField.inputView = pickerView
         }
+        
         alertAddController.addTextField { (textField) in
             textField.placeholder = "Name"
         }
         
         alertAddController.addAction(alertAddAction)
         alertAddController.addAction(alertCancelAction)
+        
+        if let categories = categories {
+            loadCell(categories)
+        }
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -88,54 +95,12 @@ class MainViewController: UITableViewController {
     }
     
     func loadCategories() {
-        categories = realm.objects(Category.self)
+        categories = dbKit.categories
         tableView.reloadData()
     }
     
     @objc func showTextFieldPickerView() {}
     func updateTextField(_ text: String) {}
-    
-    // MARK: - UITableViewDatasource, UITableViewDelegate
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories?.count ?? 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "drinkItem", for: indexPath) as! MainViewCell
-        
-        if let safeCategory = categories?[indexPath.row] {
-            cell.backgroundColor = UIColor.flatSkyBlue()
-            cell.thumbnailImageView.image = UIImage(named: safeCategory.type)
-            cell.nameLabel.text = safeCategory.name+"(\(safeCategory.numberOfCheckBox))"
-            cell.category = safeCategory
-            cell.stepper.value = Double(safeCategory.numberOfCheckBox)
-            
-            let calendar = Calendar.current
-            if calendar.compare(currentDate, to: safeCategory.updateDt, toGranularity: .day) == .orderedDescending {
-                for temp in cell.checkBoxArrayFactory() {
-                    temp.tintColor = #colorLiteral(red: 0.3333052099, green: 0.3333491981, blue: 0.3332902789, alpha: 1)
-                }
-                do{
-                    try realm.write {
-                        safeCategory.numberOfCheckBox = 0
-                        safeCategory.updateDt = currentDate
-                    }
-                }catch{
-                    print("Error MainViewController tableView cellForRowAt update")
-                }
-            } else {
-                for i in 0 ..< safeCategory.numberOfCheckBox {
-                    cell.checkBoxArrayFactory()[i].tintColor = #colorLiteral(red: 0.9999076724, green: 0.6898844838, blue: 0.00432372978, alpha: 1)
-                }
-            }
-            
-            cell.accessoryType = .disclosureIndicator
-        }else{
-            cell.textLabel?.text = "No Categories"
-        }
-        
-        return cell
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDailyLog" {
@@ -145,9 +110,54 @@ class MainViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        parameterCell = tableView.cellForRow(at: indexPath) as? MainViewCell
-        performSegue(withIdentifier: "showDailyLog", sender: self)
+// MARK: - UITableViewDatasource, UITableViewDelegate
+    
+    func loadCell(_ results: Results<Category>) {
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        
+        let observable = Observable.of(results)
+        
+        observable.bind(to: drinkTableView.rx.items(cellIdentifier: "drinkItem", cellType: MainViewCell.self))
+        { row, item, cell in
+            cell.backgroundColor = UIColor.flatSkyBlue()
+            cell.thumbnailImageView.image = UIImage(named: item.type)
+            cell.nameLabel.text = item.name + "(\(String(item.numberOfCheckBox)))"
+            cell.category = item
+            cell.stepper.value = Double(item.numberOfCheckBox)
+            
+            if self.calendar.compare(self.currentDate, to: item.updateDt, toGranularity: .day) == .orderedDescending {
+                for checkBox in cell.checkBoxArrayFactory() {
+                    checkBox.tintColor = #colorLiteral(red: 0.3333052099, green: 0.3333491981, blue: 0.3332902789, alpha: 1)
+                }
+                item.numberOfCheckBox = 0
+                item.updateDt = self.currentDate
+                self.dbKit.realmUpdate(item)
+                
+//                do { try self!.realm.write {
+//                    item.numberOfCheckBox = 0
+//                    item.updateDt = self!.currentDate
+//                    }
+//                } catch {
+//                    fatalError("Error MainViewController cellForRowAt update")
+//                }
+            } else {
+                for i in 0..<item.numberOfCheckBox {
+                    cell.checkBoxArrayFactory()[i].tintColor = #colorLiteral(red: 0.9999076724, green: 0.6898844838, blue: 0.00432372978, alpha: 1)
+                }
+            }
+        }
+        .disposed(by: bag)
+        
+        drinkTableView.rx.modelSelected(MainViewCell.self)
+            .subscribe(onNext: {cell in
+                self.parameterCell = cell
+            })
+            .disposed(by: bag)
+        
+        
+        
+        
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -189,7 +199,7 @@ extension MainViewController: UIPickerViewDelegate {
 //MARK: - UISearchBar Delegate Methods
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        categories = realm.objects(Category.self).filter("name CONTAINS[cd] %@", searchBar.text ?? "").sorted(byKeyPath: "updateDt", ascending: true)
+        categories = dbKit.categories.filter("name CONTAINS[cd] %@", searchBar.text ?? "").sorted(byKeyPath: "updateDt", ascending: true)
         tableView.reloadData()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

@@ -9,6 +9,14 @@
 import Foundation
 
 struct KeychainItem {
+    // MARK: Flatform
+    enum LoginFlatform {
+        case Twitter
+        case Facebook
+        case Apple
+        case Google
+    }
+    
     // MARK: Types
     
     enum KeychainError: Error {

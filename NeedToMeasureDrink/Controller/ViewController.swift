@@ -8,27 +8,83 @@
 
 import UIKit
 import AuthenticationServices
+import RxSwift
+import RxCocoa
+import FBSDKLoginKit
 
 class ViewController: UIViewController {
+    var disposeBag = DisposeBag()
+    var message = ""
+    let alertViewController = UIAlertController()
 
     @IBOutlet var loginProviderStackView: UIStackView!
-    @IBOutlet var loginButton: UIButton!
-    @IBOutlet var idTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet weak var FacebookLoginStackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hidekeyboard()
         self.view.backgroundColor = UIColor.flatSkyBlueDark()
-        idTextField.addTarget(self, action: #selector(moveTextFieldFocus(textfield:)), for: UIControl.Event.editingDidEndOnExit)
-        passwordTextField.addTarget(self, action: #selector(textFieldFocusOut(textfield:)), for: UIControl.Event.editingDidEndOnExit)
-        // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        //Apple login
         setupProviderLoginView()
+        
+        //Facebook login
+        let facebookLoginBtn = FBLoginButton()
+        FacebookLoginStackView.addArrangedSubview(facebookLoginBtn)
+        if let token = AccessToken.current, !token.isExpired {
+            // User is logged in, do work such as go to next view controller.
+            performSegue(withIdentifier: "showWhatYouDrink", sender: nil)
+        }
+        
     }
     
-    @objc func moveTextFieldFocus(textfield: UITextField) {}
+    deinit {
+        disposeBag = DisposeBag()
+    }
     
-    @objc func textFieldFocusOut(textfield: UITextField) {}
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+        case "showWhatYouDrink":
+            return true
+        default:
+            return false
+        }
+    }
     
+    @IBAction func testInAction(_ sender: UIButton) {
+        performSegue(withIdentifier: "showWhatYouDrink", sender: nil)
+    }
+}
+
+extension ViewController {
+    
+    func idCheck(from id: String) -> Bool {
+        guard id != "" else { return false }
+        
+        if id.contains("@") && id.contains(".") {
+            message = "이메일 형식에 맞지 않습니다."
+            return true
+        }
+        
+        return false
+    }
+    
+    func pwCheck(from pw: String) -> Bool {
+        guard pw != "" else { return false }
+        
+        let pwIntegerCount = pw.filter{(0...9).contains(Int(String($0)) ?? 10)}.count
+        
+        return pwIntegerCount>3
+    }
 }
 
 extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
@@ -66,12 +122,8 @@ extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationCont
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             // Create an account in your system
             let userIdentifier = appleIDCredential.user
-            //let fullName = appleIDCredential.fullName
-            //let email = appleIDCredential.email
             
             self.saveUserInKeychaing(userIdentifier)
-            self.loginButton.setTitle("Sign out", for: .normal)
-            self.loginButton.backgroundColor = #colorLiteral(red: 0.6624035239, green: 0, blue: 0.08404419571, alpha: 1)
         case let passwordCredential as ASPasswordCredential:
             //Sing in using an existing iCloud Keychain credential
             let username = passwordCredential.user
@@ -103,24 +155,37 @@ extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationCont
     }
 }
 
-extension ViewController {
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        if textField == passwordTextField {
+//            textFieldFocusOut(textfield: textField)
+//        }else if textField == idTextField {
+//            moveTextFieldFocus(textfield: textField)
+//        }else{
+//            return false
+//        }
+        return false
+    }
+    
     func hidekeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
+    
+    @objc func moveTextFieldFocus(textfield: UITextField) {}
+    
+    @objc func textFieldFocusOut(textfield: UITextField) {}
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-}
-extension ViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == passwordTextField {
-            textFieldFocusOut(textfield: textField)
-        }else if textField == idTextField {
-            moveTextFieldFocus(textfield: textField)
-        }else{
-            return false
-        }
-        return true
+    
+    @objc private func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+    
+    @objc private func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0 // Move view to original position
     }
 }
