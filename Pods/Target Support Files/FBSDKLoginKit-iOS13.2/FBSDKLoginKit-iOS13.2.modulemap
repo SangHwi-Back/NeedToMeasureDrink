@@ -1,7 +1,0 @@
-module FBSDKLoginKit {
-  umbrella header "FBSDKLoginKit-iOS13.2-umbrella.h"
-  exclude header "FBSDKLoginKit-iOS13.5-umbrella.h"
-
-  export *
-  module * { export * }
-}

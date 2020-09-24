@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,17 +29,17 @@
                             <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qjM-Gi-d2D">
                                 <rect key="frame" x="0.0" y="0.0" width="88" height="14.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jus-KN-ksR">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jus-KN-ksR">
                                         <rect key="frame" x="0.0" y="1" width="24" height="12"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCo-fv-PDD">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCo-fv-PDD">
                                         <rect key="frame" x="32" y="1" width="24" height="12"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpS-XU-AlZ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpS-XU-AlZ">
                                         <rect key="frame" x="64" y="1" width="24" height="12"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
@@ -49,17 +49,17 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7PP-a6-GfU">
                                 <rect key="frame" x="0.0" y="22.5" width="88" height="15"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvb-Zb-WlE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvb-Zb-WlE">
                                         <rect key="frame" x="0.0" y="1" width="24" height="12.5"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W07-Io-fOs">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W07-Io-fOs">
                                         <rect key="frame" x="32" y="1" width="24" height="12.5"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c51-vT-JAF">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c51-vT-JAF">
                                         <rect key="frame" x="64" y="1" width="24" height="12.5"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
@@ -69,17 +69,17 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MvC-cO-dGK">
                                 <rect key="frame" x="0.0" y="45.5" width="88" height="14.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8s-Jv-CMY">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8s-Jv-CMY">
                                         <rect key="frame" x="0.0" y="1" width="24" height="12"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yff-xd-5dC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yff-xd-5dC">
                                         <rect key="frame" x="32" y="1" width="24" height="12"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPq-R4-Ryq">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPq-R4-Ryq">
                                         <rect key="frame" x="64" y="1" width="24" height="12"/>
                                         <color key="tintColor" red="0.3333382607" green="0.33332449199999997" blue="0.33333384989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" backgroundImage="checkmark.rectangle" catalog="system"/>
@@ -98,7 +98,7 @@
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NoText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7f-PM-m6k">
-                                <rect key="frame" x="21" y="40" width="52.5" height="20"/>
+                                <rect key="frame" x="21" y="40" width="52" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -110,15 +110,15 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ywK-3A-0wC" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="7RV-IF-WtU"/>
                     <constraint firstItem="v3t-LF-pnO" firstAttribute="leading" secondItem="ywK-3A-0wC" secondAttribute="trailing" constant="20" id="JEf-rG-BMM"/>
-                    <constraint firstItem="ywK-3A-0wC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PRg-FL-ymK"/>
+                    <constraint firstItem="ywK-3A-0wC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Q4s-7M-ohc"/>
                     <constraint firstItem="E9Q-26-gup" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Tnh-ku-6QV"/>
                     <constraint firstItem="ywK-3A-0wC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="WO6-Ct-PrR"/>
                     <constraint firstItem="E9Q-26-gup" firstAttribute="leading" secondItem="v3t-LF-pnO" secondAttribute="trailing" constant="8" symbolic="YES" identifier="ß" id="ZUU-96-5Cq"/>
                     <constraint firstAttribute="bottom" secondItem="v3t-LF-pnO" secondAttribute="bottom" constant="20" symbolic="YES" id="gXU-tc-8Xc"/>
                     <constraint firstItem="v3t-LF-pnO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="hfQ-qW-OKO"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="E9Q-26-gup" secondAttribute="bottom" constant="19.5" id="i2w-ch-d1v"/>
+                    <constraint firstAttribute="bottom" secondItem="ywK-3A-0wC" secondAttribute="bottom" id="iSa-3B-RsB"/>
                     <constraint firstItem="E9Q-26-gup" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="jL9-i1-QvE"/>
                 </constraints>
             </tableViewCellContentView>

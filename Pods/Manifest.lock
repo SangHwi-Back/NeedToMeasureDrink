@@ -1,7 +1,4 @@
 PODS:
-  - ChameleonFramework/Default (2.1.0)
-  - ChameleonFramework/Swift (2.1.0):
-    - ChameleonFramework/Default
   - FBSDKCoreKit (7.1.1):
     - FBSDKCoreKit/Basics (= 7.1.1)
     - FBSDKCoreKit/Core (= 7.1.1)
@@ -12,11 +9,11 @@ PODS:
     - FBSDKLoginKit/Login (= 7.1.1)
   - FBSDKLoginKit/Login (7.1.1):
     - FBSDKCoreKit (~> 7.1.1)
-  - Realm (5.0.3):
-    - Realm/Headers (= 5.0.3)
-  - Realm/Headers (5.0.3)
-  - RealmSwift (5.0.3):
-    - Realm (= 5.0.3)
+  - Realm (5.4.3):
+    - Realm/Headers (= 5.4.3)
+  - Realm/Headers (5.4.3)
+  - RealmSwift (5.4.3):
+    - Realm (= 5.4.3)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -26,7 +23,6 @@ PODS:
   - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
-  - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
   - FBSDKLoginKit
   - RealmSwift
   - RxCocoa
@@ -44,27 +40,16 @@ SPEC REPOS:
     - RxSwift
     - SwipeCellKit
 
-EXTERNAL SOURCES:
-  ChameleonFramework:
-    :branch: swift5
-    :git: https://github.com/wowansm/Chameleon.git
-
-CHECKOUT OPTIONS:
-  ChameleonFramework:
-    :commit: 96d52c36a45847fff60bcff7a58fec1e4bd7390b
-    :git: https://github.com/wowansm/Chameleon.git
-
 SPEC CHECKSUMS:
-  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
-  Realm: bfca1699b61b0b17c3a69ae0e648314eae91fbdb
-  RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
+  Realm: e3d5fcc50fd79ddf87a2d86301f6edbf57531f84
+  RealmSwift: db608068eccc54bce47928e8118bde13c120c307
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 7ca26e30eaebeab170adaab9508924d4d1ea8066
+PODFILE CHECKSUM: a2a31d581cd36054d8ef788f9f0cfb0a9959c126
 
 COCOAPODS: 1.8.4

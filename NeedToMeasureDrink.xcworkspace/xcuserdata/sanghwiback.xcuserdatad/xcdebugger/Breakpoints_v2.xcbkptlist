@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1918494D-EE84-407A-9949-5377AD4EE616"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NeedToMeasureDrink/Controller/DailyLogTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "tableView(_:editActionsForRowAt:for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "19C0973E-634B-4C19-A755-AD958381FA63"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -71,15 +55,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "900B6CAF-1B77-43E6-8D23-B84270488CE6"
+            uuid = "8EAA33A8-9855-4567-A75F-64C4F2DEF352"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NeedToMeasureDrink/Controller/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "loadCell(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -17,29 +17,24 @@ class ViewController: UIViewController {
     var message = ""
     let alertViewController = UIAlertController()
 
-    @IBOutlet var loginProviderStackView: UIStackView!
-    @IBOutlet weak var FacebookLoginStackView: UIStackView!
+    @IBOutlet weak var facebookLoginView: UIView!
+    @IBOutlet weak var appleLoginView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hidekeyboard()
-        self.view.backgroundColor = UIColor.flatSkyBlueDark()
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide(_:)),
-            name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow(_:)),
-            name: UIResponder.keyboardWillShowNotification, object: nil)
         
         //Apple login
         setupProviderLoginView()
         
         //Facebook login
         let facebookLoginBtn = FBLoginButton()
-        FacebookLoginStackView.addArrangedSubview(facebookLoginBtn)
+        self.facebookLoginView.addSubview(facebookLoginBtn)
+        
+        facebookLoginBtn.translatesAutoresizingMaskIntoConstraints = false
+        
+        facebookLoginBtn.widthAnchor.constraint(equalTo: self.appleLoginView.widthAnchor).isActive = true
+        facebookLoginBtn.heightAnchor.constraint(equalTo: self.appleLoginView.heightAnchor).isActive = true
+        
         if let token = AccessToken.current, !token.isExpired {
             // User is logged in, do work such as go to next view controller.
             performSegue(withIdentifier: "showWhatYouDrink", sender: nil)
@@ -51,39 +46,8 @@ class ViewController: UIViewController {
         disposeBag = DisposeBag()
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        switch identifier {
-        case "showWhatYouDrink":
-            return true
-        default:
-            return false
-        }
-    }
-    
     @IBAction func testInAction(_ sender: UIButton) {
         performSegue(withIdentifier: "showWhatYouDrink", sender: nil)
-    }
-}
-
-extension ViewController {
-    
-    func idCheck(from id: String) -> Bool {
-        guard id != "" else { return false }
-        
-        if id.contains("@") && id.contains(".") {
-            message = "이메일 형식에 맞지 않습니다."
-            return true
-        }
-        
-        return false
-    }
-    
-    func pwCheck(from pw: String) -> Bool {
-        guard pw != "" else { return false }
-        
-        let pwIntegerCount = pw.filter{(0...9).contains(Int(String($0)) ?? 10)}.count
-        
-        return pwIntegerCount>3
     }
 }
 
@@ -95,7 +59,12 @@ extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationCont
     func setupProviderLoginView() {
         let authorizationButton = ASAuthorizationAppleIDButton()
         authorizationButton.addTarget(self, action: #selector(loginProviderStackViewButtonPress), for: .touchUpInside)
-        self.loginProviderStackView.addArrangedSubview(authorizationButton)
+        self.appleLoginView.addSubview(authorizationButton)
+        
+        authorizationButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        authorizationButton.widthAnchor.constraint(equalTo: self.appleLoginView.widthAnchor).isActive = true
+        authorizationButton.heightAnchor.constraint(equalTo: self.appleLoginView.heightAnchor).isActive = true
     }
     
     @objc func loginProviderStackViewButtonPress() {
@@ -152,40 +121,5 @@ extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationCont
                                                 preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
-    }
-}
-
-extension ViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        if textField == passwordTextField {
-//            textFieldFocusOut(textfield: textField)
-//        }else if textField == idTextField {
-//            moveTextFieldFocus(textfield: textField)
-//        }else{
-//            return false
-//        }
-        return false
-    }
-    
-    func hidekeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func moveTextFieldFocus(textfield: UITextField) {}
-    
-    @objc func textFieldFocusOut(textfield: UITextField) {}
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    @objc private func keyboardWillShow(_ sender: Notification) {
-        self.view.frame.origin.y = -150 // Move view 150 points upward
-    }
-    
-    @objc private func keyboardWillHide(_ sender: Notification) {
-        self.view.frame.origin.y = 0 // Move view to original position
     }
 }

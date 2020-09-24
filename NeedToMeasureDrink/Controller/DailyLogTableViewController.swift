@@ -9,21 +9,19 @@
 import UIKit
 import RealmSwift
 import SwipeCellKit
-import ChameleonFramework
 
 class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDelegate {
     
-//    var realm = try! Realm()
-    var dbKit = RealmKit()
-    var dailyLogs: Results<DailyLog>?
-    var category: Results<Category>?
-    var typeParameter: String?
-    var nameParameter: String?
+    private var dbKit = (UIApplication.shared.delegate as? AppDelegate)?.realmKit ?? RealmKit(realm: try! Realm())
+    private var dailyLogs: Results<DailyLog>?
+    private var category: Results<Category>?
+    private var typeParameter: String?
+    private var nameParameter: String?
     var parameterCategory: Category?
-    var dailyLogSection = [[DailyLog]]()
-    var tempIndex = 0
+    private var dailyLogSection = [[DailyLog]]()
+    private var tempIndex = 0
     
-    let dateFormmater = DateFormatter()
+    private let dateFormmater = DateFormatter()
     
     @IBOutlet var dailyLogSearchBar: UISearchBar!
     
@@ -31,29 +29,23 @@ class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDele
         super.viewDidLoad()
         self.hidekeyboard()
         self.settingData()
-        self.view.backgroundColor = UIColor.flatSkyBlueDark()
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     @IBAction func deleteLogButtonClicked(_ sender: UIButton) {
-        if let safeDailyLogs = dailyLogs{
+        if let safeDailyLogs = dailyLogs {
             dbKit.realmDelete(safeDailyLogs)
-//            try! realm.write{
-//                realm.delete(safeDailyLogs)
-//            }
         }
         dismiss(animated: true, completion: nil)
     }
     @IBAction func deleteCategoryButtonClicked(_ sender: UIBarButtonItem) {
         if let safeCategory = parameterCategory {
             dbKit.realmDelete(safeCategory)
-//            try! realm.write{
-//                realm.delete(safeCategory)
-//            }
         }
         dismiss(animated: true, completion: nil)
     }
     
-    func settingData() {
+    private func settingData() {
         if let safeCategory = parameterCategory {
             dailyLogs = dbKit.dailyLogs.filter("ANY category.categoryKey = %@", safeCategory.categoryKey)
             dailyLogSection = [[DailyLog]]()
@@ -76,7 +68,6 @@ class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDele
     
     // MARK: - UITableViewDatasource, UITableViewDelegate
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return dailyLogSection.count
     }
     
@@ -96,7 +87,6 @@ class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDele
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dailyLogCell", for: indexPath) as! SwipeTableViewCell
         cell.delegate = self
-        cell.backgroundColor = UIColor.flatSkyBlue()
         dateFormmater.dateFormat = "yyyy-MM-dd hh:mm"
         // Configure the cell...
         if let safeLog = dailyLogs?[tempIndex] {
@@ -121,14 +111,6 @@ class DailyLogTableViewController: UITableViewController, SwipeTableViewCellDele
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (action, indexPath) in
             if let dailyLog = self.dailyLogs?[indexPath.row] {
                 self.dbKit.realmDelete(dailyLog)
-//                do{
-//                    try self.realm.write {
-//                        self.realm.delete(dailyLog)
-//                    }
-//                    self.settingData()
-//                }catch{
-//                    print("Error DailyLogTableViewController Delete Action \(error)")
-//                }
             }
         }
         return [deleteAction]

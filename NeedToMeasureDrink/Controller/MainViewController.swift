@@ -12,43 +12,36 @@ import SwipeCellKit
 import RxSwift
 import RxCocoa
 
-class MainViewController: UITableViewController {
-//    var realm = try! Realm()
-    var dbKit: RealmKit!
-    var dailyLog: Results<DailyLog>?
-    var categories: Results<Category>?
-    var textFieldPickerValue: String?
-    var simpleDateFormmater = DateFormatter.dateFormat(fromTemplate: "yyyy-mm-dd", options: 0, locale: Locale(identifier: "ko_KR"))
+class MainViewController: UIViewController, UITableViewDelegate {
+
+    private var dbKit = (UIApplication.shared.delegate as? AppDelegate)?.realmKit ?? RealmKit(realm: try! Realm())
+    private var dailyLog: Results<DailyLog>?
+    private var categories: Results<Category>?
+    private var textFieldPickerValue: String?
+    private var simpleDateFormmater = DateFormatter.dateFormat(fromTemplate: "yyyy-mm-dd", options: 0, locale: Locale(identifier: "ko_KR"))
     
-    let drinks = ["Water", "Beer", "Tea"]
-    let defaults = UserDefaults.standard
-    var imageView: UIImageView?
-    let alertAddController = UIAlertController(title: "alertAddTitle", message: "AddMessage", preferredStyle: .alert)
-    let alertController = UIAlertController(title: "alertTitle", message: "AddMessage", preferredStyle: .alert)
-    let alertCategoryActionSheet = UIAlertController(title: "actionSheetTitle", message: "actionSheetMessage", preferredStyle: .actionSheet)
-    let currentDate = Date.init()
-    var parameterCell: MainViewCell?
+    private let drinks = ["Water", "Beer", "Tea"]
+    private let defaults = UserDefaults.standard
+    private var imageView: UIImageView?
+    private let alertAddController = UIAlertController(title: "alertAddTitle", message: "AddMessage", preferredStyle: .alert)
+    private let alertController = UIAlertController(title: "alertTitle", message: "AddMessage", preferredStyle: .alert)
+    private let alertCategoryActionSheet = UIAlertController(title: "actionSheetTitle", message: "actionSheetMessage", preferredStyle: .actionSheet)
+    private let currentDate = Date.init()
+    private var parameterCell: MainViewCell?
     
-    let calendar = Calendar.current
-    let bag = DisposeBag()
+    private let calendar = Calendar.current
+    private let bag = DisposeBag()
     
     @IBOutlet var categorySearchBar: UISearchBar!
     @IBOutlet var drinkTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.flatSkyBlueDark()
-        
-        if let appDel = UIApplication.shared.delegate as? AppDelegate {
-            dbKit = appDel.realmKit
-        } else {
-            dbKit = RealmKit(realm: try! Realm())
-        }
-        
-        categories = dbKit.categories
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.categories = dbKit.categories
         self.hidekeyboard()
         let nibName = UINib(nibName: "MainViewCell", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "drinkItem")
+        self.drinkTableView.register(nibName, forCellReuseIdentifier: "drinkItem")
         
         let alertAddAction = UIAlertAction(title: "Add", style: .default) { (_) in
             let category = Category()
@@ -101,13 +94,13 @@ class MainViewController: UITableViewController {
         self.present(alertAddController, animated: true, completion: nil)
     }
     
-    func loadCategories() {
-        categories = dbKit.categories
-        tableView.reloadData()
+    private func loadCategories() {
+        self.categories = dbKit.categories
+        self.drinkTableView.reloadData()
     }
     
     @objc func showTextFieldPickerView() {}
-    func updateTextField(_ text: String) {}
+    private func updateTextField(_ text: String) {}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDailyLog" {
@@ -119,15 +112,14 @@ class MainViewController: UITableViewController {
     
 // MARK: - UITableViewDatasource, UITableViewDelegate
     
-    func loadCell(_ results: Results<Category>) {
-        tableView.delegate = nil
-        tableView.dataSource = nil
+    private func loadCell(_ results: Results<Category>) {
+        self.drinkTableView.delegate = nil
+        self.drinkTableView.dataSource = nil
         
         let observable = Observable.of(results)
         
         observable.bind(to: drinkTableView.rx.items(cellIdentifier: "drinkItem", cellType: MainViewCell.self))
         { row, item, cell in
-            cell.backgroundColor = UIColor.flatSkyBlue()
             cell.thumbnailImageView.image = UIImage(named: item.type)
             cell.nameLabel.text = item.name + "(\(String(item.numberOfCheckBox)))"
             cell.category = item
@@ -196,7 +188,7 @@ extension MainViewController: UIPickerViewDelegate {
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         categories = dbKit.categories.filter("name CONTAINS[cd] %@", searchBar.text ?? "").sorted(byKeyPath: "updateDt", ascending: true)
-        tableView.reloadData()
+        self.drinkTableView.reloadData()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {

@@ -1,7 +1,0 @@
-module SwipeCellKit {
-  umbrella header "SwipeCellKit-iOS13.2-umbrella.h"
-  exclude header "SwipeCellKit-iOS13.5-umbrella.h"
-
-  export *
-  module * { export * }
-}

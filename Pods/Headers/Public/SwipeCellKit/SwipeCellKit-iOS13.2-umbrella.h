@@ -1,1 +1,0 @@
-../../../Target Support Files/SwipeCellKit-iOS13.2/SwipeCellKit-iOS13.2-umbrella.h

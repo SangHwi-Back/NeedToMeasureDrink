@@ -6,7 +6,6 @@ target 'NeedToMeasureDrink' do
   # Pods for NeedToMeasureDrink
   pod 'RealmSwift'
   pod 'SwipeCellKit'
-  pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :branch => 'swift5'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'FBSDKLoginKit'
@@ -18,7 +17,6 @@ target 'NeedToMeasureDrinkTests' do
   # Pods for NeedToMeasureDrink
   pod 'RealmSwift'
   pod 'SwipeCellKit'
-  pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :branch => 'swift5'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'FBSDKLoginKit'
