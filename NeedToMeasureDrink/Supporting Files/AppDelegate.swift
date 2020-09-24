@@ -15,10 +15,11 @@ import FBSDKCoreKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window : UIWindow?
+    var realmKit: RealmKit!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        print(Realm.Configuration.defaultConfiguration.fileURL ?? "") //Realm dbf URL
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "") //Realm dbf URL
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         // Override point for customization after application launch.
@@ -39,10 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // And will update the schema on disk automatically
                 }
             })
-
+        
         // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config
 
+        realmKit = try! RealmKit(realm: Realm())
         // Now that we've told Realm how to handle the schema change, opening the file
         // will automatically perform the migration
         

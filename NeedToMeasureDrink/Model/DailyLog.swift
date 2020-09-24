@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class DailyLog: Object {
-    //dynamic = dynamically Update Realm
+    //dynamic = dynamically Update Realm when application running.
     @objc dynamic var type : String = "" // Water, Liquor, Tea
     @objc dynamic var name: String = "" // Name
     @objc dynamic var checked : Bool = false

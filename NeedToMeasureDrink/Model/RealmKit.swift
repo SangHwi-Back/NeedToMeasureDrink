@@ -9,8 +9,12 @@
 import Foundation
 import RealmSwift
 
-struct RealmKit {
-    var realm = try! Realm()
+class RealmKit {
+    var realm: Realm
+    init(realm: Realm) {
+        self.realm = realm
+    }
+    
     var categories: Results<Category> {
         realm.objects(Category.self)
     }

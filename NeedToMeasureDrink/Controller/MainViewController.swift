@@ -14,7 +14,7 @@ import RxCocoa
 
 class MainViewController: UITableViewController {
 //    var realm = try! Realm()
-    var dbKit = RealmKit()
+    var dbKit: RealmKit!
     var dailyLog: Results<DailyLog>?
     var categories: Results<Category>?
     var textFieldPickerValue: String?
@@ -38,6 +38,13 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.flatSkyBlueDark()
+        
+        if let appDel = UIApplication.shared.delegate as? AppDelegate {
+            dbKit = appDel.realmKit
+        } else {
+            dbKit = RealmKit(realm: try! Realm())
+        }
+        
         categories = dbKit.categories
         self.hidekeyboard()
         let nibName = UINib(nibName: "MainViewCell", bundle: nil)
@@ -134,13 +141,6 @@ class MainViewController: UITableViewController {
                 item.updateDt = self.currentDate
                 self.dbKit.realmUpdate(item)
                 
-//                do { try self!.realm.write {
-//                    item.numberOfCheckBox = 0
-//                    item.updateDt = self!.currentDate
-//                    }
-//                } catch {
-//                    fatalError("Error MainViewController cellForRowAt update")
-//                }
             } else {
                 for i in 0..<item.numberOfCheckBox {
                     cell.checkBoxArrayFactory()[i].tintColor = #colorLiteral(red: 0.9999076724, green: 0.6898844838, blue: 0.00432372978, alpha: 1)
@@ -154,10 +154,6 @@ class MainViewController: UITableViewController {
                 self.parameterCell = cell
             })
             .disposed(by: bag)
-        
-        
-        
-        
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {

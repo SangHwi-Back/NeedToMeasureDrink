@@ -49,11 +49,7 @@ class MainViewCell: UITableViewCell {
             selectedCategory = realm.object(ofType: Category.self, forPrimaryKey: self.category?.categoryKey)
             if let safeCategory = selectedCategory {
                 for i in 0 ..< checkBoxArr.count {
-                    if i < Int(sender.value) {
-                        checkBoxArr[i]?.tintColor = #colorLiteral(red: 0.9999076724, green: 0.6898844838, blue: 0.00432372978, alpha: 1)
-                    }else{
-                        checkBoxArr[i]?.tintColor = #colorLiteral(red: 0.3333052099, green: 0.3333491981, blue: 0.3332902789, alpha: 1)
-                    }
+                    checkBoxArr[i]?.tintColor = (i < Int(sender.value) ? #colorLiteral(red: 0.9999076724, green: 0.6898844838, blue: 0.00432372978, alpha: 1) : #colorLiteral(red: 0.3333052099, green: 0.3333491981, blue: 0.3332902789, alpha: 1))
                 }
                 
                 dailyLog.type = safeCategory.type
